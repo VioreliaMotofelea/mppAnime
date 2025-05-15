@@ -1,0 +1,20 @@
+{
+  "devDependencies": {
+    "@types/axios": "^0.9.36",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.15.17",
+    "msnodesqlv8": "^4.5.0"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.11",
+    "@mui/material": "^5.15.11",
+    "@prisma/client": "^6.7.0",
+    "express": "^5.1.0",
+    "pg": "^8.16.0",
+    "prisma": "^6.7.0",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.23"
+  }
+}
