@@ -4,24 +4,24 @@ import { User } from "./User";
 import { Review } from "./Review";
 import { Episode } from "./Episode";
 
-@Entity()
+@Entity('anime')
 export class Anime {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: true })
   title: string;
 
-  @Column()
+  @Column({ nullable: true })
   description: string;
 
-  @Column()
+  @Column({ nullable: true })
   imageUrl: string;
 
   @Column({ type: "float", default: 0 })
   rating: number;
 
-  @Column()
+  @Column({ nullable: true })
   status: string; // e.g., "ongoing", "completed"
 
   @Column("text", { array: true, default: () => "ARRAY[]::text[]" })
@@ -45,7 +45,7 @@ export class Anime {
   @OneToMany(() => Review, (review) => review.anime)
   reviews: Review[];
 
-  @OneToMany(() => Episode, (episode) => episode.anime)
+  @OneToMany(() => Episode, episode => episode.anime, { cascade: true })
   episodes: Episode[];
 
   @ManyToMany(() => User, (user) => user.animes)

@@ -249,9 +249,17 @@ const AnimeDetail: React.FC = () => {
                     <Typography variant="subtitle1" gutterBottom>
                       Episodes
                     </Typography>
-                    <Typography variant="body2">
-                      {anime.episodes}
-                    </Typography>
+                    {Array.isArray(anime.episodes) && anime.episodes.length > 0 ? (
+                      anime.episodes.map((episode: any) => (
+                        <div key={episode.id}>
+                          {episode.title} (Episode {episode.number}
+                          {episode.duration ? `, Duration: ${episode.duration} min` : ''}
+                          )
+                        </div>
+                      ))
+                    ) : (
+                      <Typography variant="body2">No episodes</Typography>
+                    )}
                   </StyledPaper>
                   {anime.studio && (
                     <StyledPaper>

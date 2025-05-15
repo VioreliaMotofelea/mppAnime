@@ -173,7 +173,7 @@ $(document).ready(function() {
     });
 
     // Creates APDEX table
-    createTable($("#apdexTable"), {"supportsControllersDiscrimination": true, "overall": {"data": [1.0, 500, 1500, "Total"], "isController": false}, "titles": ["Apdex", "T (Toleration threshold)", "F (Frustration threshold)", "Label"], "items": [{"data": [1.0, 500, 1500, "Get Top Rated Animes"], "isController": false}]}, function(index, item){
+    createTable($("#apdexTable"), {"supportsControllersDiscrimination": true, "overall": {"data": [0.9863, 500, 1500, "Total"], "isController": false}, "titles": ["Apdex", "T (Toleration threshold)", "F (Frustration threshold)", "Label"], "items": [{"data": [0.9863, 500, 1500, "Get Top Rated Animes"], "isController": false}]}, function(index, item){
         switch(index){
             case 0:
                 item = item.toFixed(3);
@@ -187,7 +187,7 @@ $(document).ready(function() {
     }, [[0, 0]], 3);
 
     // Create statistics table
-    createTable($("#statisticsTable"), {"supportsControllersDiscrimination": true, "overall": {"data": ["Total", 5000, 0, 0.0, 9.683599999999966, 1, 133, 10.0, 15.0, 16.0, 26.0, 507.5111652456354, 711.2094942651238, 97.1408089727974], "isController": false}, "titles": ["Label", "#Samples", "FAIL", "Error %", "Average", "Min", "Max", "Median", "90th pct", "95th pct", "99th pct", "Transactions/s", "Received", "Sent"], "items": [{"data": ["Get Top Rated Animes", 5000, 0, 0.0, 9.683599999999966, 1, 133, 10.0, 15.0, 16.0, 26.0, 507.5111652456354, 711.2094942651238, 97.1408089727974], "isController": false}]}, function(index, item){
+    createTable($("#statisticsTable"), {"supportsControllersDiscrimination": true, "overall": {"data": ["Total", 5000, 0, 0.0, 320.37119999999896, 38, 618, 356.0, 436.0, 466.0, 542.0, 121.17393306351939, 255.6012650558612, 23.193448125439257], "isController": false}, "titles": ["Label", "#Samples", "FAIL", "Error %", "Average", "Min", "Max", "Median", "90th pct", "95th pct", "99th pct", "Transactions/s", "Received", "Sent"], "items": [{"data": ["Get Top Rated Animes", 5000, 0, 0.0, 320.37119999999896, 38, 618, 356.0, 436.0, 466.0, 542.0, 121.17393306351939, 255.6012650558612, 23.193448125439257], "isController": false}]}, function(index, item){
         switch(index){
             // Errors pct
             case 3:

@@ -3,21 +3,21 @@ import { User } from "./User";
 import { Anime } from "./Anime";
 import { Episode } from "./Episode";
 
-@Entity()
+@Entity('review')
 @Unique(["user", "anime"])
 export class Review {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: true })
   content: string;
 
-  @Column()
+  @Column({ nullable: true })
   rating: number;
 
-  @ManyToOne(() => User, (user) => user.reviews)
+  @ManyToOne(() => User, (user) => user.reviews, { onDelete: "CASCADE" })
   user: User;
 
-  @ManyToOne(() => Anime, (anime) => anime.reviews)
+  @ManyToOne(() => Anime, (anime) => anime.reviews, { onDelete: "CASCADE" })
   anime: Anime;
 }
