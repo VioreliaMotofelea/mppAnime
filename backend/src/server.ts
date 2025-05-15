@@ -53,6 +53,45 @@ AppDataSource.initialize().then(() => {
     res.json(anime);
   });*/
 
+  app.get('/api/animes/statistics/by-status', async (req, res) => {
+    const animeRepo = AppDataSource.getRepository(Anime);
+    const reviewRepo = AppDataSource.getRepository('Review');
+  
+    // Get all statuses
+    const statuses = await animeRepo
+      .createQueryBuilder('anime')
+      .select('DISTINCT anime.status', 'status')
+      .getRawMany();
+  
+    // For each status, compute average rating and total reviews
+    const stats = await Promise.all(
+      statuses.map(async ({ status }) => {
+        // Average rating for animes with this status
+        const { avg } = await animeRepo
+          .createQueryBuilder('anime')
+          .select('AVG(anime.rating)', 'avg')
+          .where('anime.status = :status', { status })
+          .getRawOne();
+  
+        // Total reviews for animes with this status
+        const { count } = await reviewRepo
+          .createQueryBuilder('review')
+          .leftJoin('review.anime', 'anime')
+          .where('anime.status = :status', { status })
+          .select('COUNT(*)', 'count')
+          .getRawOne();
+  
+        return {
+          status,
+          averageRating: Number(avg).toFixed(2),
+          totalReviews: Number(count)
+        };
+      })
+    );
+  
+    res.json(stats);
+  });
+
   // Get top rated animes
   app.get('/api/animes/top-rated', async (req, res) => {
     const animeRepo = AppDataSource.getRepository(Anime);
