@@ -23,6 +23,9 @@ model User {
   updatedAt DateTime @updatedAt
   animes    Anime[]  @relation("UserAnimes")
   reviews   Review[]
+
+  @@index([email])
+  @@index([username])
 }
 
 model Anime {
@@ -37,6 +40,10 @@ model Anime {
   updatedAt   DateTime @updatedAt
   users       User[]   @relation("UserAnimes")
   reviews     Review[]
+
+  @@index([title])
+  @@index([rating])
+  @@index([status])
 }
 
 model Review {
@@ -51,4 +58,7 @@ model Review {
   animeId   Int
 
   @@unique([userId, animeId])
+  @@index([rating])
+  @@index([createdAt])
+  @@index([userId, animeId])
 }

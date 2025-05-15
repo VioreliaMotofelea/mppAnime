@@ -19,9 +19,20 @@ router.get("/", async (req, res) => {
 });
 
 // Get anime by id
-router.get("/:id", async (req, res) => {
+/*uter.get("/:id", async (req, res) => {
   const animeRepo = AppDataSource.getRepository(Anime);
   const anime = await animeRepo.findOne({ where: { id: Number(req.params.id) } });
+  if (!anime) return res.status(404).json({ message: "Anime not found" });
+  res.json(anime);
+});*/
+
+router.get("/:id", async (req, res) => {
+  const id = Number(req.params.id);
+  if (isNaN(id)) {
+    return res.status(400).json({ message: "Invalid anime ID" });
+  }
+  const animeRepo = AppDataSource.getRepository(Anime);
+  const anime = await animeRepo.findOne({ where: { id } });
   if (!anime) return res.status(404).json({ message: "Anime not found" });
   res.json(anime);
 });

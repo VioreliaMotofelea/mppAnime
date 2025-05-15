@@ -43,10 +43,35 @@ AppDataSource.initialize().then(() => {
     res.json({ animes, total, page: Number(page), limit: take });
   });
 
-  app.get('/api/animes/:id', async (req, res) => {
+  /*p.get('/api/animes/:id', async (req, res) => {
     const animeRepo = AppDataSource.getRepository(Anime);
     const anime = await animeRepo.findOne({
       where: { id: Number(req.params.id) },
+      relations: ['episodes'],
+    });
+    if (!anime) return res.status(404).json({ message: 'Anime not found' });
+    res.json(anime);
+  });*/
+
+  // Get top rated animes
+  app.get('/api/animes/top-rated', async (req, res) => {
+    const animeRepo = AppDataSource.getRepository(Anime);
+    // Adjust the query as needed for your schema
+    const animes = await animeRepo.find({
+      order: { rating: 'DESC' },
+      take: 10
+    });
+    res.json(animes);
+  });
+
+  app.get('/api/animes/:id', async (req, res) => {
+    const id = Number(req.params.id);
+    if (isNaN(id)) {
+      return res.status(400).json({ message: "Invalid anime ID" });
+    }
+    const animeRepo = AppDataSource.getRepository(Anime);
+    const anime = await animeRepo.findOne({
+      where: { id },
       relations: ['episodes'],
     });
     if (!anime) return res.status(404).json({ message: 'Anime not found' });
