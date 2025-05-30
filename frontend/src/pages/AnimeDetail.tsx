@@ -23,16 +23,7 @@ import { Anime } from '../types/anime';
 import { animeApi } from '../services/api';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import StarIcon from '@mui/icons-material/Star';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import LanguageIcon from '@mui/icons-material/Language';
 import AnimeForm from '../components/AnimeForm';
-
-const StyledGrid = styled(Grid)(({ theme }) => ({
-  '&.MuiGrid-item': {
-    padding: theme.spacing(2),
-  },
-}));
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(2),

@@ -36,7 +36,7 @@ async function generateAnimes(count: number) {
       },
     });
 
-    for (let ep = 1; ep <= 2; ep++) {
+    for (let ep = 1; ep <= 3; ep++) {
       await prisma.episode.create({
         data: {
           title: `Episode ${ep}`,

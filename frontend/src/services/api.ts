@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Anime, AnimeListResponse } from '../types/anime';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://animes-api.onrender.com';
 
 export const animeApi = {
   getAllAnimes: async (page = 1, limit = 10): Promise<AnimeListResponse> => {

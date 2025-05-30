@@ -1,5 +1,5 @@
 // src/entities/Anime.ts
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, CreateDateColumn, UpdateDateColumn } from "typeorm";
 import { User } from "./User";
 import { Review } from "./Review";
 import { Episode } from "./Episode";
@@ -41,6 +41,12 @@ export class Anime {
 
   @Column({ nullable: true })
   source: string;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 
   @OneToMany(() => Review, (review) => review.anime)
   reviews: Review[];

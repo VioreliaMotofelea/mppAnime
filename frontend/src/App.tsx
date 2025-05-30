@@ -6,6 +6,7 @@ import { Box } from '@mui/material';
 import Home from './pages/Home';
 import AnimeDetail from './pages/AnimeDetail';
 import Navbar from './components/Navbar';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Create a custom anime-themed theme
 const theme = createTheme({

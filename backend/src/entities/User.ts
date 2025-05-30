@@ -4,6 +4,11 @@ import { Review } from "./Review";
 import { Episode } from "./Episode";
 import { Post } from "./Post";
 
+export enum UserRole {
+  USER = 'USER',
+  ADMIN = 'ADMIN'
+}
+
 @Entity('user')
 export class User {
   @PrimaryGeneratedColumn()
@@ -18,9 +23,15 @@ export class User {
   @Column({ nullable: true })
   password: string;
 
+  @Column({
+    type: 'enum',
+    enum: UserRole,
+    default: UserRole.USER
+  })
+  role: UserRole;
+
   @OneToMany(() => Post, (post: Post) => post.user)
   posts: Post[];
-
 
   @OneToMany(() => Review, (review) => review.user)
   reviews: Review[];

@@ -14,15 +14,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum UserRole {
+  USER
+  ADMIN
+}
+
 model User {
   id        Int      @id @default(autoincrement())
   email     String   @unique
   username  String   @unique
   password  String
+  role      UserRole @default(USER)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   animes    Anime[]  @relation("UserAnimes")
   reviews   Review[]
+  logs      ActivityLog[]
+  isMonitored Boolean @default(false)
+  monitoredUsers monitoredUser[]
 
   @@index([email])
   @@index([username])
@@ -53,6 +62,10 @@ model Anime {
   @@index([title])
   @@index([rating])
   @@index([status])
+  @@index([releaseYear])
+  @@index([type])
+  @@index([studio])
+  @@index([createdAt])
   @@map("anime")
 }
 
@@ -70,6 +83,8 @@ model Review {
   @@unique([userId, animeId])
   @@index([rating])
   @@index([createdAt])
+  @@index([userId])
+  @@index([animeId])
   @@index([userId, animeId])
   @@map("review")
 }
@@ -82,5 +97,35 @@ model Episode {
   animeId  Int
 
   @@index([animeId])
+  @@index([number])
+  @@index([title])
   @@map("episode")
+}
+
+model ActivityLog {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  action    String
+  entity    String
+  entityId  Int
+  timestamp DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([timestamp])
+  @@index([action])
+  @@map("activity_log")
+}
+
+model monitoredUser {
+  id            Int      @id @default(autoincrement())
+  userId        Int      @unique
+  user          User     @relation(fields: [userId], references: [id])
+  reason        String
+  detectedAt    DateTime @default(now())
+  lastCheckedAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([detectedAt])
+  @@map("monitored_user")
 }

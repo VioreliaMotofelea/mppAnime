@@ -73,7 +73,7 @@ router.get('/top-rated', async (req, res) => {
       },
     });
 
-    const enhancedAnimes = topAnimes.map((anime: EnhancedAnime) => ({
+    const enhancedAnimes = topAnimes.map((anime) => ({
       ...anime,
       reviewCount: anime._count.reviews,
       averageRating: anime.reviews.reduce((acc: number, review: Pick<Review, 'rating'>) => acc + review.rating, 0) / anime.reviews.length || 0,
@@ -132,7 +132,7 @@ router.get('/user-stats', async (req, res) => {
       take: 10,
     });
 
-    const enhancedStats = userStats.map((user: User & { _count: { reviews: number }, reviews: Pick<Review, 'rating'>[] }) => ({
+    const enhancedStats = userStats.map((user) => ({
       id: user.id,
       username: user.username,
       reviewCount: user._count.reviews,
