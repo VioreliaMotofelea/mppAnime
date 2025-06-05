@@ -54,7 +54,7 @@ export class MonitoringService {
 
       // Check if any operation exceeds thresholds
       const suspiciousOperations = Object.entries(operationCounts)
-        .filter(([action, count]) => count > THRESHOLDS[action as keyof typeof THRESHOLDS])
+      .filter(([action, count]) => typeof count === "number" && count > THRESHOLDS[action as keyof typeof THRESHOLDS])
         .map(([action, count]) => `${action}: ${count}`);
 
       if (suspiciousOperations.length > 0) {
