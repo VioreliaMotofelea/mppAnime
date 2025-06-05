@@ -12,11 +12,11 @@ dotenv.config();
 
 export const AppDataSource = new DataSource({
     type: "postgres",
-    host: process.env.PG_HOST ?? "localhost",
+    host: process.env.PG_HOST ?? "dpg-d111r2ali9vc738af93g-a",
     port: Number(process.env.PG_PORT) ?? 5432,
-    username: process.env.PG_USER ?? "postgres",
-    password: process.env.PG_PASSWORD ?? "0000",
-    database: process.env.PG_DATABASE ?? "anime_db",
+    username: process.env.PG_USER ?? "anime_user",
+    password: process.env.PG_PASSWORD ?? "iXZIvOAgumhbRWZoZX4nchJWlW8tikza",
+    database: process.env.PG_DATABASE ?? "anime_db_qvi9",
     synchronize: true,
     logging: true,
     entities: [User, Post, Anime, Review, Episode],
