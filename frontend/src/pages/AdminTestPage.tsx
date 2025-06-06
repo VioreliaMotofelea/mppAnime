@@ -19,8 +19,8 @@ const AdminTestPage: React.FC = () => {
 
       await simulateSuspiciousActivity({
         //baseUrl: process.env.REACT_APP_API_URL || 'http://localhost:3000',
-        //baseUrl: process.env.REACT_APP_API_URL || 'https://mppanime-backend.onrender.com',
-        baseUrl: process.env.REACT_APP_API_URL || 'https://mppanime-frontend.onrender.com',
+        baseUrl: process.env.REACT_APP_API_URL || 'https://mppanime-backend.onrender.com',
+        //baseUrl: process.env.REACT_APP_API_URL || 'https://mppanime-frontend.onrender.com',
         token,
         requestCount: 30, // More requests to ensure detection
         delayMs: 50 // Faster requests to trigger monitoring
