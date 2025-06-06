@@ -2,7 +2,8 @@ import axios from 'axios';
 import { UserRole, User } from '../entities/User';
 import { AppDataSource } from '../data-source';
 
-const API_URL = 'http://localhost:5000/api';
+//const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://mppanime-backend.onrender.com/api';
 
 type Operation = {
   method: 'POST' | 'PUT' | 'DELETE';
