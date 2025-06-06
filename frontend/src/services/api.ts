@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Anime, AnimeListResponse } from '../types/anime';
 
-const API_URL = 'https://mppanime-backend.onrender.com';
+const API_URL = 'https://mppanime-backend.onrender.com/api';
 
 export const animeApi = {
   getAllAnimes: async (page = 1, limit = 10): Promise<AnimeListResponse> => {
